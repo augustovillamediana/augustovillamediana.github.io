@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="Image%20Gallery_files/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Image Gallery</h1>
+        <nav>
+            <form id="upload-form" onsubmit="upload(event)" enctype="multipart/form-data">
+                <input type="file" id="file" required="">
+                <button type="submit">Upload</button>
+            </form>
+        </nav>
+    </header>
+    <main id="content">
+        <div id="image-gallery">
+
+        </div>
+    </main>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">×</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>
+
+    <script>
+        // Function to simulate image loading (since we don't have a backend)
+        function loadImages() {
+            const gallery = document.getElementById('image-gallery');
+            const images = [
+                'ai-generated-8313922_1280.png',
+                'ai-generated-7803070_1280.jpg',
+                'anime-8464339_1280.jpg',
+                'cat-7667234_1280.jpg'
+            ];
+
+            images.forEach(image => {
+                const img = document.createElement('img');
+                img.src = `Image%20Gallery_files/${image}`;
+                img.alt = image;
+                img.onclick = function() { openModal(this); };
+                gallery.appendChild(img);
+            });
+        }
+
+        // Function to handle file upload (this won't actually upload files since there's no backend)
+        function upload(event) {
+            event.preventDefault();
+            alert('File upload simulation: No backend to handle uploads');
+        }
+
+        // Function to open the modal
+        function openModal(img) {
+            const modal = document.getElementById('myModal');
+            const modalImg = document.getElementById('img01');
+            const captionText = document.getElementById('caption');
+            modal.style.display = 'block';
+            modalImg.src = img.src;
+            captionText.innerHTML = img.alt;
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            const modal = document.getElementById('myModal');
+            modal.style.display = 'none';
+        }
+
+        // Load images on page load
+        window.onload = loadImages;
+    </script>
+
+</body>
+</html>
